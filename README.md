@@ -3,7 +3,7 @@
 This repo contains the code for the paper [Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering](https://arxiv.org/abs/2010.11660), accepted to the Real-World Reinforcement Learning Workshop in NeurIPS 2020.
 
 The attached notebook explains the structure of the required input data, and demonstrates how to use the code.
-A small sample of input dataset is available in the repo. The full datasets used for the paper contain around 1GB of data, and are available upon request from the authors.
+A small sample of input dataset is available in the repo. The full datasets used for the paper contain ~1GB of data, and are available upon request.
 
 This readme file summarizes the work and the main results.
 
