@@ -60,7 +60,7 @@ Note that the agent is fixed during both the reference episodes and the monitori
 ## Solution
 The basic suggested approach is very straight-forward: **once in a while (e.g. several times per episode) look at the last few episodes, and if the rewards are significantly lower than these of the reference data - declare a degradation**.
 
-The diagram below describes a framework that tests this approach over N episodes of a modified environment H (compared to the original environment H0; the notations come from the terminology of hypothesis testing). The environment modification should cause degradation in the agent performance, since it is not trained on the modified environment. The better the monitoring algorithm, the sooner we expect to detect this degradation.
+The diagram below describes a framework that tests this approach over N episodes of a modified environment H (compared to the original environment H0; the notations come from the terminology of hypothesis testing). The environment modification is supposed to cause degradation in the agent performance, since the agent is not trained on the modified environment. The better the monitoring algorithm, the sooner we expect to detect this degradation.
 
 <img src="https://github.com/ido90/DriftDetectionInEpisodicData/blob/main/figures/sequential_setup.png" width="720">
 
