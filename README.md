@@ -75,7 +75,7 @@ The natural statistic for comparison of rewards between two groups of episodes i
 We suggest to replace the simple mean with a weighted mean.
 We use the reference dataset to estimate the covariance matrix of the rewards (that is, the variance of the rewards in every times-step, and the correlation between different time-steps), and we define the weights to be the sums of the rows of the inverse covariance matrix.
 
-We prove that:
+We proved that:
 * If \[the deterioration in the rewards is uniform over the time-steps\] and \[the rewards are multivariate-normal\], then this test is optimal (in terms of statistical power).
   - We also suggest a near-optimal test for a certain case of non-uniform degradation (see "partial degradation" in the paper).
 * Without the normality assumption, the test is still better than the simple mean.
@@ -120,6 +120,6 @@ It handles tests of various lengths, including in the middle of episodes, and al
 
 The figure below demonstrates the success of the threshold tuning in HalfCheetah environment: when running on the valid environment (i.e. without modifications), each of the various test methods has false-alarms in approximately 5% of the 50-episodes-long sequential tests.
 
-| <img src="https://github.com/ido90/DriftDetectionInEpisodicData/blob/main/figures/sequential_threshold_tuning.png" width="800"> |
+| <img src="https://github.com/ido90/DriftDetectionInEpisodicData/blob/main/figures/sequential_threshold_tuning.png" width="320"> |
 | :--: |
 | Degradation tests in a valid (unchanged) environment of HalfCheetah: percent of (falsely) detected degradations (i.e. type-I errors) vs. number of time-steps. The numbers in paranthesis refer to the final percent of (false) detections by the method. All tests were tuned by BFAR to yield false-alarm with probability of 5% during 50 episodes. The data used to generate this figure are of course separated from the data used by BFAR to learn the thresholds. |
