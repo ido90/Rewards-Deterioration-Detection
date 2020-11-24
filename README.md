@@ -31,7 +31,7 @@ In addition, we suggest a Bootstrap-based mechanism for False-Alarm Rate control
 
 Our detection method is entirely external to the agent, and in particular does not require model-based learning. Furthermore, it can be applied to detect changes or drifts in any episodic signal.
 
-<img src="https://github.com/ido90/DriftDetectionInEpisodicData/blob/main/poster/poster.jpg" width="960">
+<img src="https://github.com/ido90/DriftDetectionInEpisodicData/blob/main/poster/Poster.jpg" width="960">
 
 
 ## Why do we need this work?
