@@ -25,9 +25,9 @@ Instead, we must detect the performance degradation as soon as possible, with as
 In this work we consider an episodic setup where the rewards within every episode are NOT assumed to be independent, identically-distributed, or based on a Markov process.
 We rely on a reference dataset of recorded episodes that are assumed to be "valid", and suggest a method to detect degradation in the rewards compared to this reference dataset.
 
-We show that our test is optimal under certain assumptions; is better than the common naive approach under weaker assumptions; and is empirically better on standard control environments compared to several alternative tests for mean-change - in certain cases by orders of magnitude.
+We show that our test is **optimal** under certain assumptions; is better than the common naive approach under weaker assumptions; and is **empirically better** than several alternative mean-change tests on standard control environments - **in certain cases by orders of magnitude**.
 
-In addition, we suggest a Bootstrap-based mechanism for False-Alarm Rate control (BFAR), that is applicable to episodic (i.e. non-i.i.d) data.
+In addition, we suggest a **Bootstrap mechanism for False-Alarm Rate control (BFAR), that is applicable to episodic (i.e. non-i.i.d) data**.
 
 Our detection method is entirely external to the agent, and in particular does not require model-based learning. Furthermore, it can be applied to detect changes or drifts in any episodic signal.
 
@@ -82,11 +82,11 @@ Our work addresses two major issues regarding this approach:
 ### Test statistic
 The natural statistic for comparison of rewards between two groups of episodes is the mean reward.
 
-We suggest to replace the simple mean with a weighted mean.
-We use the reference dataset to estimate the covariance matrix of the rewards (that is, the variance of the rewards in every times-step, and the correlation between different time-steps), and we define the weights to be the sums of the rows of the inverse covariance matrix.
+We suggest to replace the simple mean with **a weighted mean**.
+We use the reference dataset to estimate the covariance matrix of the rewards (that is, the variance of the rewards in every times-step, and the correlation between different time-steps), and we **define the weights to be the sums of the rows of the inverse covariance matrix**.
 
 We proved that:
-* If \[the deterioration in the rewards is uniform over the time-steps\] and \[the rewards are multivariate-normal\], then this test is optimal (in terms of statistical power).
+* If \[the deterioration in the rewards is uniform over the time-steps\] and \[the rewards are multivariate-normal\], then this test is **optimal** (in terms of statistical power).
   - We also suggest a near-optimal test for a certain case of non-uniform degradation (see "partial degradation" in the paper).
 * Without the normality assumption, the test is still better than the simple mean.
   - We also show how much better: roughly speaking, the advantage increases along with the heterogeneity of the eigenvalues of the covariance matrix.
@@ -103,7 +103,7 @@ A sample of the results is shown below.
 The results above refer to the cumulative number of detections over a sequential test.
 Consider instead a setup of individual (not sequential) test, where we are given a sample of rewards and need to decide whether they came from a "bad" (i.e. modified) environment.
 In this setup we encounter a very interesting phenomenon, as demonstrated in the figure below: the tests that do not exploit the covariance matrix "correctly", sometimes suffer from decrease in detection rates during the first episode, which is not fully recovered even after numerous episodes. In other words, these tests do better with the several first time-steps than they do with the data of several whole episodes!
-Our tests, on the other hand, usually shown increasing performance with the amount of data, as expected from a data-driven statistical test.
+Our tests, on the other hand, usually show increasing performance with the amount of data, as expected from a data-driven statistical test.
 
 | <img src="https://github.com/ido90/DriftDetectionInEpisodicData/blob/main/figures/individual_results.png" width="320"> |
 | :--: |
@@ -117,14 +117,14 @@ In other words, on a valid environment, the test returns a false-alarm with prob
 
 If the distribution of the test statistic (for a valid environment) is known, then we can simply take its alpha percentile as the test-threshold, and it is guaranteed to satisfy the condition described above.
 In cases where the distribution is not known, it is common to use sampling based on bootstrap or Monte-Carlo method in order to approximate the distribution of the statistic.
-However, the rewards in our case are not i.i.d, while numerical methods usually rely on the data-samples being i.i.d in order to simulate new datasets by re-sampling.
+However, **the rewards in our case are not i.i.d, while numerical methods usually rely on the data-samples being i.i.d in order to simulate new datasets by re-sampling**.
 
-In the context of sequential tests, where tests are applied repetitively, it is common to refer to the "false-alarm rate", that is, the amount of time between false-alarms.
+In the context of **sequential tests**, where tests are applied repetitively, it is common to refer to the "false-alarm rate", that is, the amount of time between false-alarms.
 In our work we tune the test-threshold according to the criterion: "during h episodes of test on a valid environment, raise a false-alarm with probability lower than alpha".
 Many methods exist for tuning of tests-thresholds in sequential tests.
-However, even the methods that permit overlapping data between consecutive tests, usually do not permit correlated data as in our case.
+However, **even the methods that permit overlapping data between consecutive tests, usually do not permit correlated data as in our case**.
 
-We suggest a Bootstrap mechanism for False-Alarm Rate control (**BFAR**) that overcomes both difficulties described above.
+We suggest a Bootstrap mechanism for False-Alarm Rate control (**BFAR**) that **overcomes both difficulties described above**.
 The mechanism relies on the assumption that even though the time-steps are not i.i.d, the episodes are.
 It handles tests of various lengths, including in the middle of episodes, and also supports tuning of thresholds for multiple tests that run in parallel (as used both by the Mixed test described in the paper, and by multi-horizon tests as shown in the diagram above).
 
