@@ -2,7 +2,7 @@
 
 This repo contains the code for the paper [Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering](https://arxiv.org/abs/2010.11660), accepted to the Real-World Reinforcement Learning Workshop in NeurIPS 2020.
 
-The notebook explains the structure of the required input data, and demonstrates how to use the code.
+The attached notebook explains the structure of the required input data, and demonstrates how to use the code.
 A small sample of input dataset is available in the repo. The full datasets used for the paper contain around 1GB of data, and are available upon request from the authors.
 
 This readme file summarizes the work and the main results.
@@ -30,6 +30,8 @@ We show that our test is optimal under certain assumptions; is better than the c
 In addition, we suggest a Bootstrap-based mechanism for False-Alarm Rate control (BFAR), that is applicable to episodic (i.e. non-i.i.d) data.
 
 Our detection method is entirely external to the agent, and in particular does not require model-based learning. Furthermore, it can be applied to detect changes or drifts in any episodic signal.
+
+<img src="https://github.com/ido90/DriftDetectionInEpisodicData/blob/main/poster/poster.jpg" width="960">
 
 
 ## Why do we need this work?
