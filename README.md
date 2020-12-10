@@ -81,11 +81,11 @@ Our work addresses two major issues regarding this approach:
 
 ### Test statistic
 The natural statistic for comparison of rewards between two groups of episodes is the mean reward.
+However, by presenting the problem as multivariate mean-shift detection with possibly partial observations, we show that this naive approach is highly sub-optimal.
+We also consider the mean-shift in a way that corresponds to deterioration of a temporal signal (such as agent rewards), and derive an optimal statistical test for this scenario, which turns out to be simply **a weighted mean** (unlike standard multivariate mean-shift tests, e.g. Hotelling test).
 
-We suggest to replace the simple mean with **a weighted mean**.
-We use the reference dataset to estimate the covariance matrix of the rewards (that is, the variance of the rewards in every times-step, and the correlation between different time-steps), and we **define the weights to be the sums of the rows of the inverse covariance matrix**.
-
-We proved that:
+More specifically, we use the reference dataset to estimate the covariance matrix of the rewards (that is, the variance of the rewards in every times-step, and the correlation between different time-steps), and we **define the weights to be the sums of the rows of the inverse covariance matrix**.
+We prove that:
 * If \[the deterioration in the rewards is uniform over the time-steps\] and \[the rewards are multivariate-normal\], then this test is **optimal** (in terms of statistical power).
   - We also suggest a near-optimal test for a certain case of non-uniform degradation (see "partial degradation" in the paper).
 * Without the normality assumption, the test is still better than the simple mean.
