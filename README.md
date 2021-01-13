@@ -4,6 +4,7 @@
 
 The attached notebook explains the structure of the required input data, and demonstrates how to use the code.
 A small sample of input dataset is available in the repo. The full datasets used for the paper contain ~1GB of data, and are available upon request.
+The code dependencies are Python 3, the standard scientific packages (numpy, scipy, matplotlib, pandas, seaborn), and PyTorch.
 
 This readme file summarizes the work and the main results.
 
