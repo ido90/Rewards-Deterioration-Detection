@@ -1,9 +1,9 @@
-# Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering
+# Rewards Deterioration Detection in Episodic Reinforcement Learning
 
-**This repo contains the code for the paper [Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering](https://arxiv.org/abs/2010.11660), accepted to the [Real-World Reinforcement Learning Workshop in NeurIPS 2020](https://sites.google.com/view/neurips2020rwrl).**
+**This repo contains the code for the paper [Rewards Deterioration Detection in Episodic Reinforcement Learning](https://arxiv.org/abs/2010.11660), accepted to the [proceedings of ICML 2021](https:TODO) and to the [Real-World Reinforcement Learning Workshop in NeurIPS 2020](https://sites.google.com/view/neurips2020rwrl)** (the latter under the title *Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering*).
 
 The attached notebook explains the structure of the required input data, and demonstrates how to use the code.
-A small sample of input dataset is available in the repo. The full datasets used for the paper contain ~1GB of data, and are available upon request.
+A small sample of input dataset is available in the repo. The full datasets used for the paper contain hundreds of MB, and are available [here](https://drive.google.com/file/d/1jBp1t-s1r_60TITHMWW_Q8xkOVoN0GZu/view?usp=sharing).
 The code dependencies are Python 3, the standard scientific packages (numpy, scipy, matplotlib, pandas, seaborn), and PyTorch.
 
 This readme file summarizes the work and the main results.
