@@ -1,6 +1,7 @@
 # Rewards Deterioration Detection in Episodic Reinforcement Learning
 
-**This repo contains the code for the paper [Rewards Deterioration Detection in Episodic Reinforcement Learning](https://arxiv.org/abs/2010.11660), accepted to the [proceedings of ICML 2021](https:TODO) and to the [Real-World Reinforcement Learning Workshop in NeurIPS 2020](https://sites.google.com/view/neurips2020rwrl)** (the latter under the title *Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering*).
+**This repo contains the code for the paper [Rewards Deterioration Detection in Episodic Reinforcement Learning](https://arxiv.org/abs/2010.11660), accepted to the [proceedings of ICML 2021](https:TODO)**.
+An earlier version was accepted to the [Real-World Reinforcement Learning Workshop in NeurIPS 2020](https://sites.google.com/view/neurips2020rwrl), under the title *Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering*.
 
 The attached notebook explains the structure of the required input data, and demonstrates how to use the code.
 A small sample of input dataset is available in the repo. The full datasets used for the paper contain hundreds of MB, and are available [here](https://drive.google.com/file/d/1jBp1t-s1r_60TITHMWW_Q8xkOVoN0GZu/view?usp=sharing).
@@ -19,14 +20,14 @@ This readme file summarizes the work and the main results.
 
 
 ## Abstract
-A major challenge in real-world RL is trusting the agent in the sense of knowing whenever its performance begins to deterioate.
-Unlike the framework of many works on robust RL, in real-world problems we often cannot rely on further exploration, nor on a known model of the environment.
-Instead, we must detect the performance degradation as soon as possible, with as little assumptions on the environment as possible.
+A major challenge in real-world RL is the need to trust the agent, and in particular to know whenever its performance begins to deterioate.
+Unlike the framework of many works on robust RL, in real-world problems we often cannot rely on further exploration for adjustment, nor on a known model of the environment.
+Rather, we must detect the performance degradation as soon as possible, with as little assumptions on the environment as possible. Once detected, corresponding safety mechanisms can be activated (e.g. changing to manual control).
 
-In this work we consider an episodic setup where the rewards within every episode are NOT assumed to be independent, identically-distributed, or based on a Markov process.
-We rely on a reference dataset of recorded episodes that are assumed to be "valid", and suggest a method to detect degradation in the rewards compared to this reference dataset.
+We address this problem in an episodic setup where the rewards within every episode are NOT assumed to be independent, identically-distributed, or based on a Markov process.
+We suggest a method that exploits a reference dataset of recorded episodes assumed to be "valid", and detects degradation of rewards compared to this reference dataset.
 
-We show that our test is **optimal** under certain assumptions; is better than the common naive approach under weaker assumptions; and is **empirically better** than several alternative mean-change tests on standard control environments - **in certain cases by orders of magnitude**.
+We show that our test is **optimal** under certain assumptions; is better than the current common practice even under weaker assumptions; and is **empirically better** than several alternative mean-change tests on standard control environments - **in certain cases by orders of magnitude**.
 
 In addition, we suggest a **Bootstrap mechanism for False-Alarm Rate control (BFAR), that is applicable to episodic (i.e. non-i.i.d) data**.
 
@@ -37,24 +38,20 @@ Our detection method is entirely external to the agent, and in particular does n
 
 ## Why do we need this work?
 
-In Reinforcement Learning an agent learns a policy to make decisions in various states, leading to gained rewards.
+In Reinforcement Learning (RL) an agent learns a policy to make decisions in various states, leading to gained rewards.
 The goal of the agent is to maximize the rewards.
 Many frameworks in RL focus on learning as fast as possible, while losing as little rewards as possible during the process (minimizing the "regret").
+This is different from the common framework in many real-world risk-intolerate problems, where the agent must not be modified while running in production. Possible examples are autonomous driving and medical devices (e.g. automatic insulin injection). In such cases, the pipeline may look something like: train -> freeze -> test -> go to production.
 
-#### Robustness
-What happens if the world changes while the agent operates, or the agent's own system changes, or the agent reaches a new, previously unknown domain of states?
-Several works addressed this question, usually in the context of training, and showed how to adapt the learning to the changing environment.
+What happens if the world changes while the agent runs in production (e.g. unfamiliar weather), or the agent's own system changes (e.g. worn breaks), or the agent reaches a new, previously unknown domain of states (e.g. new geographic areas)?
+Certain works considered this question in the context of RL training, usually under restrictive assumptions (e.g. for MDP with known model and specifically-defined modifications of the environment).
+In such works, the goal is to adjust the training in an online manner.
+We focus on a different goal - detecting performance degradation following such changes in post-training phase.
+We aim to address this problem under assumptions as minimal as possible, as required for most real-world problems. In particular, in order not to rely on a state-dependent model, we chose to focus on the distribution of the rewards themselves, as described below.
 
-However, a reasonable real-world pipeline may look something like that: train -> freeze -> test -> market.
-Possible examples are autonomous driving and automatic insulin injection.
-In such cases, if the agent performance deteriorates after the training phase, it may be forbidden to re-explore for new policies in an online manner.
-Instead, the control should pass to a human driver; the patient should be referred to a doctor; a dump should be sent to the developpers; etc.
-As a result, the key in such a framework is noticing the performance degradation as soon as possible.
-
-Note that certain works on robustness also explicitly detect changes in the process.
-However, these works usually rely on very strong assumptions such as Markov process, known transition model, and fully-observable states.
-All these assumptions are often violated in real-world problems.
-In order not to rely on a state-dependent model, we chose to focus on the distribution of the rewards themselves, as described below.
+Once degradation is detected, corresponding safety mechanisms can be activated. For example, the control may pass to a human driver; the patient may be referred to a doctor; a dump may be sent to the developpers; etc.
+The key is to notice the degradation as fast and as reliably as possible.
+The consequences of late or missing detection may be indicated by the recent [accident](https://www.bloomberg.com/news/articles/2021-04-18/tesla-with-no-one-driving-crashes-in-texas-killing-two-men) of a Tesla vehicle with an autopilot module.
 
 
 ## Framework
