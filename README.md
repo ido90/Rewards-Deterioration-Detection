@@ -1,6 +1,6 @@
 # Detecting Rewards Deterioration in Episodic Reinforcement Learning
 
-**This repo contains the code for the paper [Detecting Rewards Deterioration in Episodic Reinforcement Learning](https://arxiv.org/abs/2010.11660), accepted to the [proceedings of ICML 2021](https:TODO)**.
+**This repo contains the code for the paper [Detecting Rewards Deterioration in Episodic Reinforcement Learning](https://arxiv.org/abs/2010.11660), accepted to the [proceedings of ICML 2021](https://icml.cc/Conferences/2021/ScheduleMultitrack?event=8884)**.
 An earlier version was accepted to the [Real-World Reinforcement Learning Workshop in NeurIPS 2020](https://sites.google.com/view/neurips2020rwrl), under the title *Drift Detection in Episodic Data: Detect When Your Agent Starts Faltering*.
 
 The attached notebook explains the structure of the required input data, and demonstrates how to use the code.
